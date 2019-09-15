@@ -21,7 +21,7 @@ class Position(object):
         prices = web.DataReader(ticker, 'yahoo', start, end)['Close']
         returns = prices.pct_change()
 
-        self.ticker = ticker
+        self.ticker = ticker.upper()
         self.position_std_dev = returns.std()
         self.number_of_shares = number_of_shares
         self.initial_price = prices[-1]

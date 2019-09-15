@@ -31,11 +31,19 @@ class Portfolio(object):
         current_value = 0
         for position in self.positions:
             current_value += ( position.number_of_shares * position.initial_price)
+    
+    def portfolio_ticker_symbols(self):
+        symbols = []
+        for position in self.positions:
+            symbols.append(position.ticker)
+        print(symbols)
+        return symbols
 
 def create_portfolio(positions):
     return Portfolio(positions)
 
 
-portfolio = create_portfolio([create_position('spy',0.05,100),create_position('spy',0.05,100)])
+portfolio = create_portfolio([create_position('spy',0.05,100),create_position('XOM',0.05,100)])
 portfolio.loop_through_each_position()
+portfolio.portfolio_ticker_symbols()
 # pprint(vars(portfolio))
