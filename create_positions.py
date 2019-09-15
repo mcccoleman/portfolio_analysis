@@ -10,7 +10,7 @@ from pprint import pprint
 class Position(object):
     ticker = ""
     std_dev = 0
-    last_price = 0
+    initial_price = 0
     distribution_yield = 0
     mu = 0
     number_of_shares = 0
@@ -23,17 +23,28 @@ class Position(object):
 
         self.ticker = ticker
         self.std_dev = returns.std()
-        self.last_price = prices[-1]
-        # revisit - pull information in automatically
-        self.distribution_yield = distribution_yield
+        self.initial_price = prices[-1]
+        self.number_of_shares = number_of_shares
+       
+
         # approximation - revisit
         self.mu = (( prices[-1] - prices[0] ) / prices[0]) / (end - start).days
-        self.number_of_shares
-        # add tax-status of distributions at some point
-        print('position created')
+        # revisit - pull information
+        self.distribution_yield = distribution_yield
+         # add tax-status of distributions at some point
+
+
+
+
+    def print_position_attributes(self):
+        print('Position Ticker: {ticker}'.format(ticker=self.ticker))
+        print('Position Std: {std_dev}'.format(std_dev=self.std_dev))
+        print('Position Mu: {mu}'.format(mu=self.mu))
+        print('Number of Shares: {number}'.format(number=self.number_of_shares))
+        print('Yield: {dis_yield}'.format(dis_yield=self.distribution_yield))
+        print('')
 
 def create_position(ticker,distribution_yield,number_of_shares):
     return Position(ticker,distribution_yield,number_of_shares)
 
 position = create_position('spy',0.05,100)
-pprint(vars(position))

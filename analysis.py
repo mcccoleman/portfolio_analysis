@@ -5,43 +5,22 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib import style
 
+from create_positions import create_position
+from create_portfolio import create_portfolio
 
 
-#def run_monte_carlo():
-style.use('ggplot')
-
-start = dt.datetime(1990, 9, 11)
-end = dt.datetime(2019, 9, 11)
-
-
-prices = web.DataReader('SPY', 'yahoo', start, end)['Close']
-returns = prices.pct_change()
-
-first_price = prices[0]
-last_price = prices[-1]
-price_change = ( last_price - first_price ) / first_price
-number_of_days = (end - start).days
-    #number_of_days = 504
-mu = price_change / number_of_days
-
-
-
-
-
-    # number of trials
 num_of_simulations = 1000
-    # number of days 
 time_horizon = 252
 
 
+portfolio = create_portfolio([create_position('XOM',0.05,100),create_position('SPY',0.05,100)])
+
 simulation_df = pd.DataFrame()
 for x in range(num_of_simulations):
-    count = 0
-    daily_vol = returns.std()
     
-    price_series = []
+    portfolio_series = []
     
-    price = last_price * (1 + np.random.normal(0, daily_vol))
+    portfolio_value = portfolio.initial_portfolio_value * (1 + np.random.normal(0, daily_vol))
     price_series.append(price)
     
     for y in range(time_horizon):
