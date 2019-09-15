@@ -1,5 +1,10 @@
 from create_positions import create_position
 from pprint import pprint
+import numpy as np
+import pandas as pd
+import pandas_datareader as web
+from datetime import datetime
+import matplotlib.pyplot as plt
 
 
 class Portfolio(object):
@@ -11,7 +16,9 @@ class Portfolio(object):
 
 
 
-        # calculate portfolio standard deviation as part of object initiation
+        # calculate portfolio standard deviation as part of object creation
+        # will involve calculating the correlation with each of the asset classes in portfolio
+
 
     def loop_through_each_position(self):
         counter = 1

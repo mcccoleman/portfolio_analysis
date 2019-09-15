@@ -16,15 +16,16 @@ class Position(object):
     number_of_shares = 0
 
     def __init__(self,ticker,distribution_yield,number_of_shares):
-        start = dt.datetime(1990, 9, 11)
-        end = dt.datetime(2019, 9, 11)
+        start = dt.datetime(2017, 1, 1)
+        end = dt.datetime(2019, 9, 15)
         prices = web.DataReader(ticker, 'yahoo', start, end)['Close']
         returns = prices.pct_change()
 
         self.ticker = ticker
-        self.std_dev = returns.std()
-        self.initial_price = prices[-1]
+        self.position_std_dev = returns.std()
         self.number_of_shares = number_of_shares
+        self.initial_price = prices[-1]
+        self.hypothetical_price = 0
        
 
         # approximation - revisit
@@ -38,7 +39,7 @@ class Position(object):
 
     def print_position_attributes(self):
         print('Position Ticker: {ticker}'.format(ticker=self.ticker))
-        print('Position Std: {std_dev}'.format(std_dev=self.std_dev))
+        print('Position Std: {position_std_dev}'.format(position_std_dev=self.position_std_dev))
         print('Position Mu: {mu}'.format(mu=self.mu))
         print('Number of Shares: {number}'.format(number=self.number_of_shares))
         print('Yield: {dis_yield}'.format(dis_yield=self.distribution_yield))
