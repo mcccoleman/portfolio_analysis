@@ -34,9 +34,6 @@ class Position(object):
         self.distribution_yield = distribution_yield
          # add tax-status of distributions at some point
 
-
-
-
     def print_position_attributes(self):
         print('Position Ticker: {ticker}'.format(ticker=self.ticker))
         print('Position Std: {position_std_dev}'.format(position_std_dev=self.position_std_dev))
