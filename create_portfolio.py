@@ -16,9 +16,16 @@ class Portfolio(object):
 
 
 
-        # calculate portfolio standard deviation as part of object creation
-        # will involve calculating the correlation with each of the asset classes in portfolio
-
+        # determine covariance of each of the asset classes in portfolio to calculate standrad deviation
+        df = pd.DataFrame()
+        for stock in self.portfolio_ticker_symbols():
+            df[stock] = web.DataReader(stock, data_source='yahoo',start='2017-1-1' ,end='2019-9-15')['Adj Close']
+        cov_matrix_daily = df.pct_change().cov()
+        # currently only calculating daily for simulations, below will calculate annualized 
+        # cov_matrix_annualized = cov_matrix_daily * 252
+        # cov_matrix_annualized = cov_matrix_daily
+        weights = np.array(self.portfolio_weights())
+        self.portfolio_standard_deviation = np.sqrt(np.dot(weights.T, np.dot(cov_matrix_daily, weights)))
 
     def loop_through_each_position(self):
         counter = 1
@@ -28,22 +35,28 @@ class Portfolio(object):
             position.print_position_attributes()
 
     def initial_portfolio_value(self):
-        current_value = 0
+        value = 0
         for position in self.positions:
-            current_value += ( position.number_of_shares * position.initial_price)
+            value += ( position.number_of_shares * position.initial_price)
+        return value
     
+    def calculated_portfolio_weighted_mu(self):
+        weightedMu = 0
+        for position in self.positions:
+            weightedMu += ( (position.number_of_shares * position.initial_price) / self.initial_portfolio_value() ) * position.mu
+        return weightedMu
+
     def portfolio_ticker_symbols(self):
         symbols = []
         for position in self.positions:
             symbols.append(position.ticker)
-        print(symbols)
         return symbols
+
+    def portfolio_weights(self):
+        weights = []
+        for position in self.positions:
+            weights.append((position.initial_price * position.number_of_shares) / self.initial_portfolio_value())
+        return weights
 
 def create_portfolio(positions):
     return Portfolio(positions)
-
-
-portfolio = create_portfolio([create_position('spy',0.05,100),create_position('XOM',0.05,100)])
-portfolio.loop_through_each_position()
-portfolio.portfolio_ticker_symbols()
-# pprint(vars(portfolio))
