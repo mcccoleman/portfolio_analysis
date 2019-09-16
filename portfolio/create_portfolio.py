@@ -38,14 +38,14 @@ class Portfolio(object):
         value = 0
         for account in self.accounts:
             for position in account.positions:
-                value += ( position.number_of_shares * position.initial_price)
+                value += ( position.number_of_shares * position.basis)
         return value
     
-    def calculated_portfolio_weighted_mu(self):
+    def calculated_initial_portfolio_weighted_mu(self):
         weightedMu = 0
         for account in self.accounts:
             for position in account.positions:
-                weightedMu += ( (position.number_of_shares * position.initial_price) / self.initial_portfolio_value() ) * position.mu
+                weightedMu += ( (position.number_of_shares * position.basis) / self.initial_portfolio_value() ) * position.mu
         return weightedMu
 
     def portfolio_ticker_symbols(self):

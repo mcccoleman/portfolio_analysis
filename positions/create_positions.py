@@ -10,7 +10,7 @@ from pprint import pprint
 class Position(object):
     ticker = ""
     std_dev = 0
-    initial_price = 0
+    basis = 0
     last_price = 0
     distribution_yield = 0
     mu = 0
@@ -25,7 +25,7 @@ class Position(object):
         self.ticker = ticker.upper()
         self.position_std_dev = returns.std()
         self.number_of_shares = number_of_shares
-        self.initial_price = prices[-1]
+        self.basis = prices[-1]
         self.last_price = prices[-1]       
 
         # approximation - revisit
