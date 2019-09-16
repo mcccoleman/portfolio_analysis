@@ -11,6 +11,7 @@ class Position(object):
     ticker = ""
     std_dev = 0
     initial_price = 0
+    last_price = 0
     distribution_yield = 0
     mu = 0
     number_of_shares = 0
@@ -25,8 +26,7 @@ class Position(object):
         self.position_std_dev = returns.std()
         self.number_of_shares = number_of_shares
         self.initial_price = prices[-1]
-        self.hypothetical_price = 0
-       
+        self.last_price = prices[-1]       
 
         # approximation - revisit
         self.mu = (( prices[-1] - prices[0] ) / prices[0]) / (end - start).days
