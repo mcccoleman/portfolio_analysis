@@ -1,4 +1,4 @@
-from create_positions import create_position
+from create_position import create_position
 from pprint import pprint
 import numpy as np
 import pandas as pd
@@ -48,6 +48,13 @@ class Portfolio(object):
                 weightedMu += ( (position.number_of_shares * position.basis) / self.initial_portfolio_value() ) * position.mu
         return weightedMu
 
+    def calculate_anticipated_portfolio_value_given_position_values(self):
+        value = 0
+        for account in self.accounts:
+            for position in account.positions:
+                value += position.calculate_updated_value()
+        return value
+
     def portfolio_ticker_symbols(self):
         symbols = []
         for account in self.accounts:
@@ -59,7 +66,7 @@ class Portfolio(object):
         weights = []
         for account in self.accounts:
             for position in account.positions:
-                weights.append((position.initial_price * position.number_of_shares) / self.initial_portfolio_value())
+                weights.append((position.basis * position.number_of_shares) / self.initial_portfolio_value())
         return weights
 
 def create_portfolio(positions):

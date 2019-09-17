@@ -4,15 +4,16 @@ import datetime as dt
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib import style
-from create_positions import create_position
+from create_position import create_position
 from create_portfolio import create_portfolio
+from create_account import create_account
 
 
 num_of_simulations = 1000
-time_horizon = 7560
+time_horizon = 252
 
 
-portfolio = create_portfolio([create_position('XOM',0.05,100),create_position('SPY',0.05,100)])
+portfolio = create_portfolio([create_account([create_position('SPY',0.05,100)])])
 initial_value = portfolio.initial_portfolio_value()
 
 simulation_df = pd.DataFrame()
@@ -23,13 +24,12 @@ for x in range(num_of_simulations):
     portfolio_series.append(portfolio_value)
     
     for y in range(time_horizon):
-        price = portfolio_series[count] * (1 + np.random.normal(portfolio.calculated_portfolio_weighted_mu(), portfolio.portfolio_standard_deviation))
+        price = portfolio_series[count] * (1 + np.random.normal(portfolio.calculated_initial_portfolio_weighted_mu(), portfolio.portfolio_standard_deviation))
         portfolio_series.append(price)
         count += 1
         
     simulation_df[x] = portfolio_series
     
-
 mean = simulation_df.mean()
 average_of_final_outcomes = mean.mean()
 plt.plot(simulation_df)

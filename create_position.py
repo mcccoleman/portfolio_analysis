@@ -42,7 +42,13 @@ class Position(object):
         print('Yield: {dis_yield}'.format(dis_yield=self.distribution_yield))
         print('')
 
+    def calculate_updated_value(self):
+        self.last_price = self.last_price * (1 + np.random.normal(self.mu, self.position_std_dev))
+        return self.last_price
+
+
+
+
+
 def create_position(ticker,distribution_yield,number_of_shares):
     return Position(ticker,distribution_yield,number_of_shares)
-
-position = create_position('spy',0.05,100)
