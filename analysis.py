@@ -4,16 +4,16 @@ import datetime as dt
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib import style
-from create_position import create_position
-from create_portfolio import create_portfolio
-from create_account import create_account
+import create_position
+import create_portfolio
+import create_account
 
 
 num_of_simulations = 1000
 time_horizon = 252
 
 
-portfolio = create_portfolio([create_account([create_position('SPY',0.05,100),create_position('XOM',0.05,100)])])
+portfolio = create_portfolio.create_portfolio([create_account.create_account([create_position.create_position('SPY',0.05,100),create_position.create_position('XOM',0.05,100)])])
 initial_value = portfolio.initial_portfolio_value()
 
 simulation_df = pd.DataFrame()
