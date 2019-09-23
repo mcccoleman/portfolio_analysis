@@ -35,12 +35,20 @@ class Portfolio(object):
                 value += ( position.number_of_shares * position.basis)
         return value
     
-    def calculated_initial_portfolio_weighted_mu(self):
+    def calculated_mu(self):
         weightedMu = 0
         for account in self.accounts:
             for position in account.positions:
                 weightedMu += ( (position.number_of_shares * position.basis) / self.initial_portfolio_value() ) * position.mu
         return weightedMu
+
+    def calculated_std(self):
+        df = pd.DataFrame()
+        for stock in self.portfolio_ticker_symbols():
+            df[stock] = web.DataReader(stock, data_source='yahoo',start='2017-1-1' ,end='2019-9-15')['Adj Close']
+        cov_matrix_daily = df.pct_change().cov()
+        weights = np.array(self.portfolio_weights())
+        return np.sqrt(np.dot(weights.T, np.dot(cov_matrix_daily, weights)))
 
     def calculate_anticipated_portfolio_value_given_position_values(self):
         value = 0

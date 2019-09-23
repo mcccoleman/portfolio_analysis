@@ -24,7 +24,7 @@ for x in range(num_of_simulations):
     portfolio_series.append(portfolio_value)
     
     for y in range(time_horizon):
-        price = portfolio_series[count] * (1 + np.random.normal(portfolio.calculated_initial_portfolio_weighted_mu(), portfolio.portfolio_standard_deviation))
+        price = portfolio_series[count] * (1 + np.random.normal(portfolio.calculated_mu(), portfolio.portfolio_standard_deviation))
         portfolio_series.append(price)
         count += 1
         
