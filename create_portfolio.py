@@ -13,16 +13,10 @@ class Portfolio(object):
 
     def __init__(self,accounts):
         self.accounts = accounts
-
-
-        # determine covariance of each of the asset classes in portfolio to calculate standrad deviation
         df = pd.DataFrame()
         for stock in self.portfolio_ticker_symbols():
             df[stock] = web.DataReader(stock, data_source='yahoo',start='2017-1-1' ,end='2019-9-15')['Adj Close']
         cov_matrix_daily = df.pct_change().cov()
-        # currently only calculating daily for simulations, below will calculate annualized 
-        # cov_matrix_annualized = cov_matrix_daily * 252
-        # cov_matrix_annualized = cov_matrix_daily
         weights = np.array(self.portfolio_weights())
         self.portfolio_standard_deviation = np.sqrt(np.dot(weights.T, np.dot(cov_matrix_daily, weights)))
 

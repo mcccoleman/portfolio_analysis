@@ -30,7 +30,7 @@ class Position(object):
 
         # approximation - revisit
         self.mu = (( prices[-1] - prices[0] ) / prices[0]) / (end - start).days
-        # revisit - pull information
+        # revisit - pull information from the web
         self.distribution_yield = distribution_yield
          # add tax-status of distributions at some point
 
