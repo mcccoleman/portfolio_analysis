@@ -1,2 +1,2 @@
 # stock-analysis
-![example]("./example.png")
+![example]("example.png")
