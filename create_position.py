@@ -28,11 +28,8 @@ class Position(object):
         self.basis = prices[-1]
         self.last_price = prices[-1]       
 
-        # approximation - revisit
         self.mu = (( prices[-1] - prices[0] ) / prices[0]) / (end - start).days
-        # revisit - pull information from the web
         self.distribution_yield = distribution_yield
-         # add tax-status of distributions at some point
 
     def print_position_attributes(self):
         print('Position Ticker: {ticker}'.format(ticker=self.ticker))
