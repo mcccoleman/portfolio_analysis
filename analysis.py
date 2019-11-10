@@ -38,6 +38,3 @@ plt.xlabel('Day')
 plt.ylabel('Price')
 plt.suptitle('Monte Carlo - Portfolio')
 plt.show()
-    
-    
-run_monte_carlo()
