@@ -1,2 +1,2 @@
 # stock-analysis
-![example]("example.png")
+![example](https://github.com/mccoleman75225/stock-analysis/blob/master/example.png)

@@ -40,4 +40,4 @@ plt.suptitle('Monte Carlo - Portfolio')
 plt.show()
     
     
-#run_monte_carlo()
+run_monte_carlo()
