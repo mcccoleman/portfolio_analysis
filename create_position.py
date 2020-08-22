@@ -16,7 +16,7 @@ class Position(object):
     mu = 0
     number_of_shares = 0
 
-    def __init__(self,ticker,distribution_yield,number_of_shares):
+    def __init__(self, ticker, distribution_yield, number_of_shares):
         start = dt.datetime(2017, 1, 1)
         end = dt.datetime(2019, 9, 15)
         prices = web.DataReader(ticker, 'yahoo', start, end)['Close']
