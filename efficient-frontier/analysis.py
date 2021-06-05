@@ -35,10 +35,9 @@ def display_simulated_ef_with_random(mean_returns, cov_matrix, num_portfolios, r
     plt.figure(figsize=(10, 7))
     plt.scatter(results[0,:],results[1,:],c=results[2,:],cmap='YlGnBu', marker='o', s=10, alpha=0.3)
     plt.scatter(sdp,rp,marker='*',color='r',s=500, label='Maximum Sharpe ratio')
-    plt.title('Simulated Portfolio Optimization based on Efficient Frontier')
     plt.show()
 
-quandl.ApiConfig.api_key = ''
+quandl.ApiConfig.api_key = 'pLAzMCYGMdJF92iuN648'
 data = quandl.get_table(
     'WIKI/PRICES',
     ticker = positions,
