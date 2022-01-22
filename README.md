@@ -14,4 +14,4 @@ Simulated returns
 ![example_output](https://github.com/mcccoleman/portfolio_analysis/blob/main/simulated_returns.png)
 
 Weights of optimal portfolio
-![example_output](https://github.com/mcccoleman/portfolio_analysis/blob/main/weightspng)
+![example_output](https://github.com/mcccoleman/portfolio_analysis/blob/main/weights.png)
