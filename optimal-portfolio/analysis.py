@@ -37,7 +37,7 @@ def generate_random_portfolios(mean_returns, cov_matrix, risk_free_rate, num_por
 def get_index_of_max_sharpe_ratio(results):
     return np.argmax(results[2])
 
-def display_simulated_ef_with_random(results):
+def display_simulated_ef(results):
     max_sharpe_idx = get_index_of_max_sharpe_ratio(results)
     plt.figure(figsize=(10, 7))
     plt.scatter(results[0, :], results[1, :], c=results[2, :], cmap='YlGnBu', marker='o', s=10, alpha=0.3)
@@ -54,7 +54,7 @@ def get_optimal_weights_for_positions(results, weights):
 
 def run_simulations():
     results, weights = generate_random_portfolios(mean_returns, cov_matrix, RISK_FREE_RATE, NUM_OF_SIMULATIONS)
-    display_simulated_ef_with_random(results)
+    display_simulated_ef(results)
     print(get_optimal_weights_for_positions(results, weights))        
 
 
