@@ -47,7 +47,6 @@ def display_simulated_ef_with_random(mean_returns, cov_matrix, num_portfolios, r
     plt.show()
 
 
-quandl.ApiConfig.api_key = 'pLAzMCYGMdJF92iuN648'
 data = quandl.get_table(
     'WIKI/PRICES',
     ticker=positions,
