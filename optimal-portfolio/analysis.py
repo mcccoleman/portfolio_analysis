@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 
 MARKET_DAYS_PER_YEAR = 252
 RISK_FREE_RATE = 0
-NUM_OF_SIMULATIONS = 1000
+NUM_OF_SIMULATIONS = 1000000
 
 data = pd.read_csv('position_adjusted_close.csv', header= 0, index_col=False)
 df = data.set_index('date')
@@ -42,7 +42,7 @@ def display_simulated_ef(results):
     plt.figure(figsize=(10, 7))
     plt.scatter(results[0, :], results[1, :], c=results[2, :], cmap='YlGnBu', marker='o', s=10, alpha=0.3)
     sdp, rp = results[0, max_sharpe_idx], results[1, max_sharpe_idx]
-    plt.scatter(sdp, rp, marker='*', color='r', s=500, label='Maximum Sharpe ratio')
+    plt.scatter(sdp, rp, marker='*', color='b', s=500, label='Maximum Sharpe ratio')
     plt.show()
 
 def get_optimal_weights_for_positions(results, weights):
