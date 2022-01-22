@@ -56,9 +56,7 @@ data = quandl.get_table(
 
 
 df = data.set_index('date')
-print(df)
 table = df.pivot(columns='ticker')
-print(table)
 table.columns = [col[1] for col in table.columns]
 returns = table.pct_change()
 mean_returns = returns.mean()
