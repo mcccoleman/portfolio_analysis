@@ -4,8 +4,8 @@ from itertools import permutations
 import matplotlib.pyplot as plt
 
 MARKET_DAYS_PER_YEAR = 252
-RISK_FREE_RATE = 0
-NUM_OF_SIMULATIONS = 1000000
+RISK_FREE_RATE = 0.05
+NUM_OF_SIMULATIONS = 100000
 
 data = pd.read_csv('position_adjusted_close.csv', header= 0, index_col=False)
 df = data.set_index('date')
@@ -24,8 +24,9 @@ def generate_random_portfolios(mean_returns, cov_matrix, risk_free_rate, num_por
     results = np.zeros((3, num_portfolios))
     weights_record = []
     for i in range(num_portfolios):
-        weights = np.random.random(len(mean_returns))
+        weights = (np.random.random(len(mean_returns)) * 10) - 5
         weights /= np.sum(weights)
+        print(weights)
         weights_record.append(weights)
         portfolio_std_dev, portfolio_return = portfolio_annualised_performance(
             weights, mean_returns, cov_matrix)
