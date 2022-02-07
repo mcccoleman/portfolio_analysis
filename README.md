@@ -8,8 +8,8 @@ Simulated returns over time
 Efficient frontier
 ![example_output](https://github.com/mccoleman75225/portfolio_analysis/blob/master/example-2.png)
 
-Simulated returns
-![example_output](https://github.com/mcccoleman/portfolio_analysis/blob/main/simulated_returns.png)
+Optimal Portfolio
+![example_output](https://github.com/mcccoleman/portfolio_analysis/blob/main/optimal-portfolio.png)
 
 Weights of optimal portfolio
 ![example_output](https://github.com/mcccoleman/portfolio_analysis/blob/main/weights.png)
