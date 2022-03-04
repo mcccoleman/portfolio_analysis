@@ -67,5 +67,5 @@ def run_simulations():
     
 def test():
     print(itertools.combinations(range(4), 10))
-test()
-# run_simulations()
+    
+run_simulations()
