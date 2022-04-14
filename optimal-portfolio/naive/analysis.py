@@ -8,7 +8,7 @@ MARKET_DAYS_PER_YEAR = 252
 RISK_FREE_RATE = 0
 NUM_OF_SIMULATIONS = 10000
 
-data = pd.read_csv('position_adjusted_close.csv', header= 0, index_col=False)
+data = pd.read_csv('./position_adjusted_close.csv', header= 0, index_col=False)
 df = data.set_index('date')
 positions = list(df.columns)
 returns = df.pct_change()
